@@ -1,13 +1,43 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 const page = () => {
+  const router = useRouter()
   const [name, setName] = useState("");
   const [age, setAge] = useState(0);
   const [userId, setUserID] = useState("");
+
+
+
+
+
+useEffect(()=>{
+const fetchUser = async()=>{
+const result = await axios.get("http://localhost:4000/getUserskiller70")
+if(result.data){
+router.push("/")
+
+}else{
+  return false
+}
+
+}
+
+fetchUser()
+},[])
+
+
+
+
+
+
+
+
+
 
 const handleSubmit = async()=>{
 
@@ -28,7 +58,7 @@ const result = await axios.post("http://localhost:4000/saveUser",{name,age,userI
         />
         <Input
           onChange={(e) => {
-            setName(e.target.value);
+            setAge(e.target.value);
           }}
           type="text"
           placeholder="Age"
