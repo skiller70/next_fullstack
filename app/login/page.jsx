@@ -9,26 +9,26 @@ const page = () => {
   const router = useRouter()
   const [name, setName] = useState("");
   const [age, setAge] = useState(0);
-  const [userId, setUserID] = useState("");
+  const [userId, setUserId] = useState("");
 
 
+console.log(userId)
 
 
+// useEffect(()=>{
+// const fetchUser = async()=>{
+// const result = await axios.get("http://localhost:4000/getUserskiller70")
+// if(result.data){
+// // router.push("/")
 
-useEffect(()=>{
-const fetchUser = async()=>{
-const result = await axios.get("http://localhost:4000/getUserskiller70")
-if(result.data){
-router.push("/")
+// }else{
+//   return false
+// }
 
-}else{
-  return false
-}
+// }
 
-}
-
-fetchUser()
-},[])
+// fetchUser()
+// },[])
 
 
 
@@ -41,7 +41,9 @@ fetchUser()
 
 const handleSubmit = async()=>{
 
-const result = await axios.post("http://localhost:4000/saveUser",{name,age,userId})
+const result = await axios.post("http://localhost:3000/api/getUser",{name,age,userId})
+
+console.log(result)
 
 }
 
@@ -64,7 +66,7 @@ const result = await axios.post("http://localhost:4000/saveUser",{name,age,userI
           placeholder="Age"
         />
         <Input  onChange={(e) => {
-            setUserID(e.target.value);
+            setUserId(e.target.value);
           }} type="text" placeholder="UserId" />
         <Button  onClick={handleSubmit}>Submit</Button>
       </div>
